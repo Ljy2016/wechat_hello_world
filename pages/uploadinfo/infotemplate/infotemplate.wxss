@@ -1,0 +1,57 @@
+@import '../../common/style/weui.wxss';
+
+.page_bottom {
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.input_title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input_title_image {
+  width: 40rpx;
+  height: 40rpx;
+  padding-left: 5rpx;
+}
+
+.input_title_info {
+  margin: 20rpx 3rpx;
+  font-size: 35rpx;
+}
+
+.input_content {
+  margin: 0rpx 30rpx;
+  font-size: 30rpx;
+}
+
+.radio_group_vertical {
+  display: flex;
+  flex-direction: column;
+  margin: 0rpx 30rpx;
+}
+
+.picker {
+  margin: 0rpx 30rpx;
+  background-color: #fff;
+}
+
+.read_only_text {
+  margin: 0rpx 30rpx;
+  background-color: #fff;
+}
+
+.check_box_vertical {
+  margin: 10rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.view_show {
+  display: block;
+}
+
+.view_hide {
+  display: none;
+}

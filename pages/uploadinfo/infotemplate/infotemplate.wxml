@@ -1,0 +1,158 @@
+<template name="input_common">
+  <view class="page_bottom" hidden="{{showTag}}">
+    <view class="input_title">
+      <image class="input_title_image" src="{{requird? '../../images/icon_require.png':'' }}"></image>
+      <view class="input_title_info"> {{text}}</view>
+    </view>
+    <input class="input_content" id="{{id}}" name="{{name}}" placeholder="{{hinttxt}}" />
+  </view>
+</template>
+
+
+<template name="only_read_text">
+  <view class="page_bottom" hidden="{{showTag}}">
+    <view class="input_title">
+      <image class="input_title_image" src="{{requird? '../../images/icon_require.png':'' }}"></image>
+      <view class="input_title_info"> {{text}}</view>
+    </view>
+    <view class="read_only_text" bindtap="onclick"  name="{{name}}"> {{showText}} </view>
+  </view>
+</template>
+
+
+<template name="radio_common">
+  <view hidden="{{showTag}}">
+    <view class=" input_title">
+      <image class="input_title_image" src="{{requird? '../../images/icon_require.png':'' }}"></image>
+      <view class="input_title_info"> {{title}}</view>
+    </view>
+    <radio-group class="radio_group_vertical" id="{{id}}" name="{{name}}" bindchange="radio_changed">
+      <label>
+        <radio value="{{value1}}" />{{txt1}}</label>
+      <label>
+        <radio value="{{value2}}" />{{txt2}}</label>
+    </radio-group>
+  </view>
+</template>
+
+<template name="picker_address">
+  <view class="page_bottom" hidden="{{showTag}}">
+    <view class="input_title">
+      <image class="input_title_image" src="{{requird? '../../images/icon_require.png':'' }}"></image>
+      <view class="input_title_info"> {{title}}</view>
+    </view>
+    <picker class="picker" id="{{id}}" name="{{name}}" mode="region" bindchange="bindRegionChange" value="{{region}}">
+      <view class="picker">
+        {{region[0]}}，{{region[1]}}，{{region[2]}}
+      </view>
+    </picker>
+  </view>
+</template>
+
+
+<template name="picker_date">
+  <view class="page_bottom" hidden="{{showTag}}">
+    <view class="input_title">
+      <image class="input_title_image" src="{{requird? '../../images/icon_require.png':'' }}"></image>
+      <view class="input_title_info"> {{title}}</view>
+    </view>
+    <picker class="picker" id="{{id}}" name="{{name}}" mode="date" start="2001-01-01" end="2100-01-01" bindchange="bindDateChange" value="{{date}}">
+      <view class="picker">
+        {{date}}
+      </view>
+    </picker>
+  </view>
+</template>
+
+
+<template name="picker_normal">
+  <view class="page_bottom" hidden="{{showTag}}">
+    <view class="input_title">
+      <image class="input_title_image" src="{{requird? '../../images/icon_require.png':'' }}"></image>
+      <view class="input_title_info"> {{title}}</view>
+    </view>
+    <picker class="picker" id="{{id}}" name="{{name}}" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="picker">
+        {{array[index]}}
+      </view>
+    </picker>
+  </view>
+</template>
+
+
+<template name="checkbox_vertical">
+  <view hidden="{{showTag}}">
+    <view class="input_title">
+      <image class="input_title_image" src="{{requird? '../../images/icon_require.png':'' }}"></image>
+      <view class="input_title_info"> {{title}}</view>
+    </view>
+    <checkbox-group id="{{id}}" name="{{name}}" class="check_box_vertical" wx:for="{{items}}">
+      <checkbox value="{{item.name}}" checked="{{item.checked}}">{{item.value}}</checkbox>
+    </checkbox-group>
+  </view>
+</template>
+
+
+
+<template name="base_info">
+
+  <view>
+    <view>
+      <template is="input_common" data="{{id:'num',name:'num',requird:'true',text:'工号',hinttxt:'请输入工号（如AX999）'}}"> </template>
+      <template is="input_common" data="{{id:'name',name:'name',requird:'true',text:'姓名',hinttxt:'请输入姓名'}}"> </template>
+      <template is="input_common" data="{{id:'age',name:'age',requird:'true',text:'年龄',hinttxt:'请输入年龄'}}"> </template>
+      <template is="input_common" data="{{id:'idcard',name:'idcard',requird:'true',text:'请输入身份证号',hinttxt:'请输入身份证'}}"> </template>
+      <template is="radio_common" data="{{id:'sex',name:'sex',requird:'true',title:'请选择性别',value1:'man',txt1:'男',value2:'woman',txt2:'女'}}"> </template>
+      <template is="picker_address" data="{{id:'native_place',name:'native_place',requird:'true',title:'籍贯',region:native_place}}"> </template>
+      <template is="picker_normal" data="{{id:'department',name:'department',requird:'true',title:'所属部门',index:departIndex,array:department}}"> </template>
+      <template is="input_common" data="{{id:'emergency_contact',name:'emergency_contact',requird:'true',text:'紧急联系人',hinttxt:'请输入紧急联系人'}}"> </template>
+      <template is="input_common" data="{{id:'emergency_phone_number',name:'emergency_phone_number',requird:'true',text:'紧急联系人电话',hinttxt:'请输入紧急联系人电话'}}"> </template>
+      <template is="picker_address" data="{{id:'live_before_return',name:'live_before_return',requird:'true',title:'回深前旅居地',region:live_before_return}}"> </template>
+
+
+
+
+    </view>
+  </view>
+
+
+</template>
+
+<template name="report_info">
+  <template is="picker_normal" data="{{id:'personal_travel',name:'personal_travel',requird:'true',title:'个人行程',index:personal_travel_index,array:personal_travel}}"> </template>
+  <template is="only_read_text" data="{{showText:address,name:'address',requird:'true',text:'当前所在城市'}}"> </template>
+  <template is="input_common" data="{{id:'detail_address',name:'detail_address',requird:'true',text:'当前居住地详细地址',hinttxt:'请输入详细地址'}}"> </template>
+  <template is="picker_date" data="{{id:'return_date',name:'return_date',requird:'true',title:'计划回深日期',date:return_date}}"> </template>
+  <template is="checkbox_vertical" data="{{id:'return_vehicle',name:'return_vehicle',requird:'true',title:'计划反深交通工具',items:vehicle_items}}"> </template>
+  <template is="input_common" data="{{id:'vehicle_number',name:'vehicle_number',requird:'true',text:'车次/航班号/车牌号',hinttxt:'请输入车次/航班号'}}"> </template>
+  <template is="radio_common" data="{{id:'pneumonia',name:'pneumonia',requird:'true',title:'有无肺炎史',value1:'no',txt1:'无',value2:'yes',txt2:'有'}}"> </template>
+  <template is="radio_common" data="{{id:'quarantine',name:'quarantine',requird:'true',title:'是否有过隔离',value1:'no',txt1:'无',value2:'yes',txt2:'有'}}"> </template>
+  <template is="picker_date" data="{{id:'quarantine_date_start',name:'quarantine_date_start',requird:'true',title:'隔离开始日期',date:quarantine_date_start,showTag:quarantine_tag}}"> </template>
+  <template is="picker_date" data="{{id:'quarantine_date_end',name:'quarantine_date_end',requird:'true',title:'隔离结束日期',date:quarantine_date_end,showTag:quarantine_tag}}"> </template>
+  <template is="input_common" data="{{id:'quarantine_address',name:'quarantine_address',requird:'true',text:'隔离地点',hinttxt:'请输入地址',showTag:quarantine_tag}}"> </template>
+  <template is="radio_common" data="{{id:'quarantine_relieve',name:'quarantine_relieve',requird:'true',title:'是否解除隔离',value1:'no',txt1:'否',value2:'yes',txt2:'是',showTag:quarantine_tag}}"> </template>
+</template>
+
+
+<template name="daily_info">
+  <template is="picker_normal" data="{{id:'today_status',name:'today_status',requird:'true',title:'今日状态',index:today_status_index,array:today_status}}"> </template>
+  <template is="radio_common" data="{{id:'ishenzhen',name:'ishenzhen',requird:'true',title:'是否已在《i深圳》公众号上完成申报',value2:'no',txt2:'否',value1:'yes',txt1:'是'}}"> </template>
+  <template is="radio_common" data="{{id:'personal_status',name:'personal_status',requird:'true',title:'个人健康状况',value1:'yes',txt1:'正常',value2:'other',txt2:'其他'}}"> </template>
+  <template is="input_common" data="{{id:'personal_status_other',name:'personal_status_other',requird:'true',text:'个人健康异常情况',hinttxt:'请输入详细描述',showTag:personal_status_other_tag}}"> </template>
+  <template is="radio_common" data="{{id:'out_work',name:'out_work',requird:'true',title:'是否需要外出作业',value1:'no',txt1:'否',value2:'yes',txt2:'是'}}"> </template>
+  <template is="checkbox_vertical" data="{{id:'out_work_vehicle',name:'out_work_vehicle',requird:'true',title:'外出作业交通工具',items:out_work_vehicle_items,showTag:out_work_tag}}"> </template>
+  <template is="input_common" data="{{id:'out_woek_address',name:'out_woek_address',requird:'true',text:'外出作业地址',hinttxt:'请输入详细地址',showTag:out_work_tag}}"> </template>
+  <template is="radio_common" data="{{id:'family_status',name:'family_status',requird:'true',title:'直系亲属健康状况',value1:'yes',txt1:'正常',value2:'other',txt2:'其他'}}"> </template>
+  <template is="input_common" data="{{id:'family_status_other',name:'family_status_other',requird:'true',text:'直系亲属健康异常情况',hinttxt:'请输入详细描述',showTag:family_status_other_tag}}"> </template>
+  <template is="input_common" data="{{id:'thermometer_am',name:'thermometer_am',requird:'true',text:'上午体温测量人',hinttxt:'请输入体温测量人员姓名'}}"> </template>
+  <template is="input_common" data="{{id:'body_temperature_am',name:'body_temperature_am',requird:'true',text:'上午体温',hinttxt:'请输入体温值'}}"> </template>
+  <template is="input_common" data="{{id:'thermometer_pm',name:'thermometer_pm',requird:'true',text:'下午体温测量人',hinttxt:'请输入体温测量人员姓名'}}"> </template>
+  <template is="input_common" data="{{id:'body_temperature_pm',name:'body_temperature_pm',requird:'true',text:'下午体温',hinttxt:'请输入体温值'}}"> </template>
+  <template is="radio_common" data="{{id:'symptoms',name:'symptoms',requird:'true',title:'有无症状（发热、乏力、干咳、鼻塞、流涕等）',value1:'no',txt1:'无',value2:'yes',txt2:'有'}}"> </template>
+  <template is="radio_common" data="{{id:'contact_hubei',name:'contact_hubei',requird:'true',title:'一月内有无与湖北人员接触',value1:'no',txt1:'无',value2:'yes',txt2:'有'}}"> </template>
+  <template is="radio_common" data="{{id:'contact_other',name:'contact_other',requird:'true',title:'一月内有无与南阳、驻马店、信阳、温州、台州人员接触',value1:'no',txt1:'无',value2:'yes',txt2:'有'}}"> </template>
+  <template is="radio_common" data="{{id:'contact_suspected',name:'contact_suspected',requird:'true',title:'一月内有无与疑似病例接触（同事、亲属、朋友）',value1:'no',txt1:'无',value2:'yes',txt2:'有'}}"> </template>
+  <template is="radio_common" data="{{id:'contact_definite',name:'contact_definite',requird:'true',title:'一月内有无与确诊病例接触（同事、亲属、朋友）',value1:'no',txt1:'无',value2:'yes',txt2:'有'}}"> </template>
+  <template is="only_read_text" data="{{showText:fill_time,name:'fill_time',requird:'true',text:'填报日期时间'}}"> </template>
+  <template is="input_common" data="{{id:'remark',name:'remark',requird:'true',text:'备注',hinttxt:'请输入备注'}}"> </template>
+</template>

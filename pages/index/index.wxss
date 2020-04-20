@@ -1,0 +1,29 @@
+/**index.wxss**/
+@import '../common/common.wxss';
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 188rpx;
+  height: 188rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.upload {
+  width: 80%;
+  margin-top: 140px; 
+}
+
+
+
+page{
+    background-color: #FFFFFF;
+}

@@ -1,0 +1,28 @@
+<import src="infotemplate/infotemplate.wxml" />
+<view class="page">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="page__bd  page__td">
+      <view class="kind-list">
+        <block wx:for="{{list}}" wx:key="id">
+          <view class="kind-list__item">
+            <view id="{{item.id}}" class="weui-flex kind-list__item-hd {{item.open ? 'kind-list__item-hd_show' : ''}}" bindtap="kindToggle">
+              <view class="weui-flex__item">{{item.name}}</view>
+              <image class="kind-list__img" src="{{item.open ? '../../images/arrow_down.png':'../../images/arrow_right.png' }}"></image>
+            </view>
+            <view class="kind-list__item-bd {{item.open ? 'kind-list__item-bd_show' : ''}}">
+              <view class="weui-cells {{item.open ? 'weui-cells_show' : ''}}">
+                <block wx:for="{{item.pages}}" wx:for-item="page" wx:key="*this">
+                  <template is="{{page}}" data="{{...templatedata}}" />
+                </block>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button formType="submit">Submit</button>
+      <button formType="reset">Reset</button>
+    </view>
+  </form>
+</view>
